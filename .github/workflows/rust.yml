@@ -18,18 +18,20 @@ jobs:
       matrix:
         os: [9, 10, 11]
 
-    steps:
+    steps:        
     - name: Install i386 deps
       run: |
         dpkg --add-architecture i386 
         apt-get update
         apt-get install build-essential curl make g++-multilib -y
 
-    - name: Install nightly rust
+    - uses: actions/checkout@v2
+    - name: Install latest nightly
       uses: actions-rs/toolchain@v1
       with:
-        toolchain: nightly-i686-unknown-linux-gnu
+        toolchain: nightly-2019-04-20
         override: true
+        components: rustfmt, clippy
 
     - uses: actions/checkout@v2
     - name: Build server plugin
