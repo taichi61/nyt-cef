@@ -24,11 +24,11 @@ jobs:
         dpkg --add-architecture i386 
         apt-get update
         apt-get install build-essential curl make g++-multilib -y
-        
-    - name: Install latest nightly
+
+    - name: Install nightly rust
       uses: actions-rs/toolchain@v1
       with:
-        toolchain: nightly
+        toolchain: nightly-i686-unknown-linux-gnu
         override: true
         components: rustfmt, clippy
 
