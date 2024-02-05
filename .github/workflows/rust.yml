@@ -25,12 +25,19 @@ jobs:
         apt-get update
         apt-get install build-essential curl make g++-multilib -y
 
-    - name: Install nightly rust
+    - name: Install rust
       uses: actions-rs/toolchain@v1
       with:
-        toolchain: nightly-i686-unknown-linux-gnu
+        toolchain: stable
+        components: rustfmt
+        profile: minimal
         override: true
-        components: rustfmt, clippy
+
+    - name: cargo fmt -- --check
+      uses: actions-rs/cargo@v1
+      with:
+        command: fmt
+        args: --all -- --check
 
     - uses: actions/checkout@v2
     - name: Build server plugin
