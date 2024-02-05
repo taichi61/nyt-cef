@@ -25,12 +25,10 @@ jobs:
         apt-get update
         apt-get install build-essential curl make g++-multilib -y
 
-    - name: Install rust
+    - name: Install nightly rust
       uses: actions-rs/toolchain@v1
       with:
-        toolchain: stable
-        components: rustfmt
-        profile: minimal
+        toolchain: i686-unknown-linux-gnu
         override: true
 
     - uses: actions/checkout@v2
