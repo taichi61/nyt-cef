@@ -19,17 +19,17 @@ jobs:
         os: [11]
 
     steps:
+    - name: Install nightly rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: nightly-i686-unknown-linux-gnu
+        override: true
+        
     - name: Install i386 deps
       run: |
         dpkg --add-architecture i386 
         apt-get update
         apt-get install build-essential curl make g++-multilib -y
-
-    - name: Install nightly rust
-      uses: actions-rs/toolchain@v1
-      with:
-        toolchain: i686-unknown-linux-gnu
-        override: true
 
     - uses: actions/checkout@v2
     - name: Build server plugin
