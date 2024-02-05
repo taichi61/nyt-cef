@@ -16,7 +16,7 @@ jobs:
     container: debian:${{ matrix.os }}
     strategy:
       matrix:
-        os: [9, 10, 11]
+        os: [11]
 
     steps:        
     - name: Install i386 deps
